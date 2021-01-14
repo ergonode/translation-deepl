@@ -7,15 +7,14 @@
 
 declare(strict_types=1);
 
-namespace Ergonode\TranslationDeepl\Infrastructure\Validator;
+namespace Ergonode\TranslationDeepl\Application\Validator;
 
-use Ergonode\TranslationDeepl\Infrastructure\Validator\Constraints\DeeplLanguageConstraint;
 use Scn\DeeplApiConnector\Enum\LanguageEnum;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
-class DeeplLanguageValidator extends ConstraintValidator
+class DeeplLanguageAvailableValidator extends ConstraintValidator
 {
     /**
      * @param mixed $value
@@ -24,8 +23,8 @@ class DeeplLanguageValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint): void
     {
-        if (!$constraint instanceof DeeplLanguageConstraint) {
-            throw new UnexpectedTypeException($constraint, DeeplLanguageConstraint::class);
+        if (!$constraint instanceof DeeplLanguageAvailable) {
+            throw new UnexpectedTypeException($constraint, DeeplLanguageAvailable::class);
         }
 
         if (empty($value)) {
